@@ -107,6 +107,7 @@ public class MandelbrotRenderer implements Renderer {
     public void multiplyScale(double x, double y) {
         xFactor *= x;
         yFactor *= y;
+        maxIterations = (int) Math.max(50, 50 * Math.log(1 / Math.min(xFactor, yFactor)));
     }
 
     @Override
