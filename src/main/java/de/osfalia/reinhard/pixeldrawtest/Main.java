@@ -18,7 +18,7 @@ public class Main extends Application {
     private final int[] img = new int[stageWidth * stageHeight];
 
     private PixelWriter pixelWriter;
-    private int maxIterations = 600;
+    private final int initialMaxIterations = 50;
 
     Renderer r;
 
@@ -74,7 +74,7 @@ public class Main extends Application {
         });
 
 
-        r = new MandelbrotRenderer(img, stageWidth, stageHeight, maxIterations);
+        r = new MandelbrotRenderer(img, stageWidth, stageHeight, initialMaxIterations);
         pixelWriter = canvas.getGraphicsContext2D().getPixelWriter();
 
         drawCanvas();
