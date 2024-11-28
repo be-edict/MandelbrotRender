@@ -9,6 +9,8 @@ public interface Renderer {
 
     void addOffset(int x, int y);
 
+    void setOffset(int x, int y);
+
     int getXOffset();
 
     int getYOffset();

@@ -18,8 +18,9 @@ public class Main extends Application {
     private final int[] img = new int[stageWidth * stageHeight];
 
     private PixelWriter pixelWriter;
+    private int maxIterations = 600;
 
-    Renderer renderer;
+    Renderer r;
 
     private double dragStartX = -1;
     private double dragStartY = -1;
@@ -48,26 +49,32 @@ public class Main extends Application {
             if (dragStartY == -1 || dragStartX == -1) {
                 return;
             }
-            renderer.addOffset((int) -(e.getX() - dragStartX), (int) -(e.getY() - dragStartY));
+            r.addOffset((int) -(e.getX() - dragStartX), (int) -(e.getY() - dragStartY));
             dragStartX = e.getX();
             dragStartY = e.getY();
             drawCanvas();
         });
         root.setOnScroll(e -> {
-            double factor = e.getDeltaY() < 0 ? 1.3 : 0.7;
+            double oldXScale = r.getXScale();
+            double oldYScale = r.getYScale();
+            double factor = e.getDeltaY() < 0 ? 4.0 / 3 : 3.0 / 4;
+            double mouseX = (e.getX() + r.getXOffset()) * oldXScale;
+            double mouseY = (e.getY() + r.getYOffset()) * oldYScale;
 
-            renderer.multiplyScale(factor, factor);
-            if (factor < 1) {
+            r.multiplyScale(factor, factor);
 
-            } else {
-               
-            }
+            double newXScale = r.getXScale();
+            double newYScale = r.getYScale();
+            int newXOffset = (int) (mouseX / newXScale - e.getX());
+            int newYOffset = (int) (mouseY / newYScale - e.getY());
+
+            r.setOffset(newXOffset, newYOffset);
 
             drawCanvas();
         });
 
 
-        renderer = new MandelbrotRenderer(img, stageWidth, stageHeight, 50);
+        r = new MandelbrotRenderer(img, stageWidth, stageHeight, maxIterations);
         pixelWriter = canvas.getGraphicsContext2D().getPixelWriter();
 
         drawCanvas();
@@ -75,7 +82,7 @@ public class Main extends Application {
     }
 
     private void drawCanvas() {
-        renderer.render();
+        r.render();
         pixelWriter.setPixels(0, 0, stageWidth, stageHeight, PixelFormat.getIntArgbInstance(), img, 0, stageWidth);
     }
 

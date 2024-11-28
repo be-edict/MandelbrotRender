@@ -88,6 +88,12 @@ public class MandelbrotRenderer implements Renderer {
     }
 
     @Override
+    public void setOffset(int x, int y) {
+        xOffset = x;
+        yOffset = y;
+    }
+
+    @Override
     public int getXOffset() {
         return xOffset;
     }
