@@ -1,4 +1,4 @@
-package de.osfalia.reinhard.pixeldrawtest;
+package de.ostfalia.reinhard.mandelbrotrender;
 
 
 import javafx.application.Application;

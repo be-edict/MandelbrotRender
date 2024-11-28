@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.osfalia.reinhard</groupId>
-    <artifactId>PixelDrawTest</artifactId>
+    <groupId>de.ostfalia.reinhard</groupId>
+    <artifactId>MandelbrotRender</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>PixelDrawTest</name>
+    <name>MandelbrotRender</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                de.osfalia.reinhard.pixeldrawtest/de.osfalia.reinhard.pixeldrawtest.Main
+                                de.ostfalia.reinhard.mandelbrotrender.Main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
